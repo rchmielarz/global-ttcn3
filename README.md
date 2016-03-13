@@ -1,2 +1,2 @@
 # global-ttcn3
-GNU Global with TTCN-3 support
+This is an experimental attempt to add TTCN-3 language support to GNU Global.
