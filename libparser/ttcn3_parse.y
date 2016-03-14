@@ -223,7 +223,6 @@ input:
 module:
   TTCN3_MODULE_KEYWORD TOKEN_IDENTIFIER
   {
-    printf("PARSER: modul '%s'\n", $2);
     PUT(PARSER_DEF, $2, linenum);
   }
   error /* language spec does not contain any identifiers */
@@ -254,7 +253,6 @@ record_def:
 struct_def_body:
   TOKEN_IDENTIFIER
   {
-    printf("PARSER: rekord '%s'\n", $1);
     PUT(PARSER_DEF, $1, linenum);
   } '{' struct_field_defs.optional '}'
   | TTCN3_ADDRESS_KEYWORD '{' struct_field_defs.optional '}';
@@ -270,7 +268,6 @@ struct_field_def.many.optional:
 struct_field_def:
  type TOKEN_IDENTIFIER
  {
-    printf("PARSER: element rekordu '%s'\n", $2);
     PUT(PARSER_DEF, $2, linenum);
  };
 
@@ -295,8 +292,7 @@ type:
 function_def:
   TTCN3_FUNCTION_KEYWORD TOKEN_IDENTIFIER
   {
-    printf("PARSER: funkcja '%s'\n", $1);
-    PUT(PARSER_DEF, $1, linenum);
+    PUT(PARSER_DEF, $2, linenum);
   } error;
 
 %%

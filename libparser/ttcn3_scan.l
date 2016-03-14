@@ -118,7 +118,6 @@ COMMENT		("/*"([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*"*"+"/")|("//".*)
 <LINE_COMMENT>.
 
 {IDENTIFIER}  {
-                printf("LEXER: Found identifier: %s on line: %d:%d\n", yytext, linenum, start_column);
 		return get_token(ttcn3_reserved_word(LEXTEXT, LEXLENG));
               }
 {NUMBER}      {
@@ -133,7 +132,6 @@ COMMENT		("/*"([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*"*"+"/")|("//".*)
                 return TOKEN_STRING;
               }
 .	      {
-                printf("LEXER: Found a letter: %s on line: %d:%d\n", yytext, linenum, start_column);
 		return yytext[0];
 	      }
 
@@ -304,7 +302,6 @@ get_token(int reserved_word_id)
     case TTCN3_XOR4B: token = TTCN3_XOR4B_KEYWORD; break;
     default:
       token = TOKEN_IDENTIFIER;
-      printf("LEXER: ident %s\n", yytext);
       ttcn3_lval = strdup(yytext);
       break;
     }
